@@ -1,3 +1,5 @@
+import { parseNumberParams } from "./utils";
+
 type Result = {
   periodLength: number;
   trainingDays: number;
@@ -34,4 +36,16 @@ function calculateExercises(dailyHours: number[], target: number): Result {
   };
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+  const args = process.argv.slice(2);
+  const [target, ...dailyHours] = parseNumberParams(...args);
+
+  console.log(calculateExercises(dailyHours, target));
+} catch (error) {
+  let errorMessage = "Something bad happend. ";
+  if (error instanceof Error) {
+    errorMessage += error.message;
+  }
+
+  console.error(errorMessage);
+}

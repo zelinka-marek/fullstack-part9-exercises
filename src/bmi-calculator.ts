@@ -1,3 +1,5 @@
+import { parseNumberParams } from "./utils";
+
 function calculateBmi(height: number, weight: number) {
   const bmi = Number((weight / Math.pow(height / 100, 2)).toFixed(1));
 
@@ -20,4 +22,16 @@ function calculateBmi(height: number, weight: number) {
   }
 }
 
-console.log(calculateBmi(174, 72));
+try {
+  const args = process.argv.slice(2);
+  const [height, width] = parseNumberParams(...args);
+
+  console.log(calculateBmi(height, width));
+} catch (error) {
+  let errorMessage = "Something bad happend. ";
+  if (error instanceof Error) {
+    errorMessage += error.message;
+  }
+
+  console.error(errorMessage);
+}
