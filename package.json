@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "ts-node": "ts-node",
-    "calculateBmi": "ts-node src/bmi-calculator.ts"
+    "calculateBmi": "ts-node src/bmi-calculator.ts",
+    "calculateExercises": "ts-node src/exercise-calculator.ts"
   },
   "prettier": {},
   "devDependencies": {
