@@ -1,6 +1,6 @@
 import { parseNumberParams } from "./utils";
 
-function calculateBmi(height: number, weight: number) {
+export function calculateBmi(height: number, weight: number) {
   const bmi = Number((weight / Math.pow(height / 100, 2)).toFixed(1));
 
   if (bmi < 16) {
