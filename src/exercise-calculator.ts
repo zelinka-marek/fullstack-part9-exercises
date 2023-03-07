@@ -1,5 +1,3 @@
-import { parseNumberParams } from "./utils";
-
 type Result = {
   periodLength: number;
   trainingDays: number;
@@ -16,7 +14,10 @@ const ratings = {
   3: "very good, keep going",
 };
 
-function calculateExercises(dailyHours: number[], target: number): Result {
+export function calculateExercises(
+  dailyHours: number[],
+  target: number
+): Result {
   const periodLength = dailyHours.length;
   const trainingDays = dailyHours.filter((hour) => hour !== 0).length;
   const success = dailyHours.every((hour) => hour > 0);
@@ -36,16 +37,16 @@ function calculateExercises(dailyHours: number[], target: number): Result {
   };
 }
 
-try {
-  const args = process.argv.slice(2);
-  const [target, ...dailyHours] = parseNumberParams(...args);
+// try {
+//   const args = process.argv.slice(2);
+//   const [target, ...dailyHours] = parseNumberParams(...args);
 
-  console.log(calculateExercises(dailyHours, target));
-} catch (error) {
-  let errorMessage = "Something bad happend. ";
-  if (error instanceof Error) {
-    errorMessage += error.message;
-  }
+//   console.log(calculateExercises(dailyHours, target));
+// } catch (error) {
+//   let errorMessage = "Something bad happend. ";
+//   if (error instanceof Error) {
+//     errorMessage += error.message;
+//   }
 
-  console.error(errorMessage);
-}
+//   console.error(errorMessage);
+// }
