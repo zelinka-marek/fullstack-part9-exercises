@@ -15,15 +15,15 @@ const ratings = {
 };
 
 export function calculateExercises(
-  dailyHours: number[],
-  target: number
+  dailyExercises: number[],
+  targetHours: number
 ): Result {
-  const periodLength = dailyHours.length;
-  const trainingDays = dailyHours.filter((hour) => hour !== 0).length;
-  const success = dailyHours.every((hour) => hour > 0);
-  const totalHours = dailyHours.reduce((total, hour) => total + hour, 0);
+  const periodLength = dailyExercises.length;
+  const trainingDays = dailyExercises.filter((hour) => hour !== 0).length;
+  const success = dailyExercises.every((hour) => hour > 0);
+  const totalHours = dailyExercises.reduce((total, hour) => total + hour, 0);
   const average = totalHours / periodLength;
-  const rating = average < target / 2 ? 1 : average <= target ? 2 : 3;
+  const rating = average < targetHours / 2 ? 1 : average <= targetHours ? 2 : 3;
   const ratingDescription = ratings[rating];
 
   return {
@@ -32,7 +32,7 @@ export function calculateExercises(
     success,
     rating,
     ratingDescription,
-    target,
+    target: targetHours,
     average,
   };
 }
